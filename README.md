@@ -1,4 +1,4 @@
-# 🪟 Windows XP Portfolio
+# 🪟 Windows XP (Frutiger Aero) Portfolio
 
 A nostalgic Windows XP-themed portfolio website that mimics the classic desktop experience from the early 2000s.
 

@@ -1,0 +1,632 @@
+/* Custom cursor */
+html, body, * {
+    cursor: url('assets/cursor.png');
+}
+
+@media (max-width: 768px) {
+    html, body, * {
+        cursor: pointer;
+    }
+}
+
+/* Background with Windows XP Bliss wallpaper */
+body {
+    background-image: url('assets/bg-wallpaper.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: Tahoma, Verdana, sans-serif;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+}
+body.booted {
+    opacity: 1;
+}
+
+/* Desktop Icons */
+.desktop-icons {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+}
+
+@media (max-width: 768px) {
+    .desktop-icons {
+        grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+        gap: 0.5rem;
+        padding: 0.5rem;
+    }
+}
+
+.desktop-icon {
+    width: 80px;
+    text-align: center;
+    padding: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+@media (max-width: 768px) {
+    .desktop-icon {
+        width: 70px;
+        padding: 4px;
+    }
+    
+    .desktop-icon img {
+        width: 48px !important;
+        height: 48px !important;
+    }
+    
+    .icon-label {
+        font-size: 10px;
+    }
+}
+
+.desktop-icon:hover {
+    background: rgba(255, 255, 255, 0.1);
+    outline: 1px dotted #fff;
+}
+
+.desktop-icon.selected {
+    background: rgba(49, 106, 197, 0.4);
+    outline: 1px solid #316AC5;
+}
+
+.icon-label {
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    font-size: 12px;
+    margin-top: 4px;
+    display: block;
+}
+
+/* Taskbar */
+.taskbar {
+    background: linear-gradient(to bottom, #245EDC 0%, #1C45B3 100%);
+    border-top: 1px solid #4B6ECC;
+}
+
+/* Modal Windows */
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #ECE9D8;
+    border: 1px solid #0054E3;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+    min-width: 400px;
+    transition: transform 0.2s ease-out;
+    z-index: 10;
+    max-width: 90vw;
+    max-height: 90vh;
+    margin: 5vh auto;
+}
+
+.modal.dragging {
+    cursor: move;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.7);
+    border: 1px solid #0054E3;
+}
+
+.modal-header {
+    background: linear-gradient(to right, #0054E3 0%, #2787E9 50%, #4B8AE5 100%);
+    color: white;
+    padding: 6px 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid #1C45B3;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.modal-body {
+    padding: 16px;
+}
+
+/* Context Menu */
+#context-menu {
+    min-width: 200px;
+    font-size: 12px;
+    background: #ECE9D8;
+    border: 1px solid #0054E3;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.context-menu-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 6px 10px;
+    background: none;
+    border: none;
+    color: #222;
+    font-size: 12px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.context-menu-item:hover {
+    background: #316AC5;
+    color: white;
+}
+
+.context-menu-item:active {
+    background: #1C45B3;
+}
+
+.context-menu-item img {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+}
+
+/* Start Button */
+#start-button {
+    background: linear-gradient(to bottom, #3C75E1 0%, #1C45B3 100%);
+    border: 1px solid #1C45B3;
+    font-weight: bold;
+}
+
+#start-button:hover {
+    background: linear-gradient(to bottom, #4C85F1 0%, #2C55C3 100%);
+}
+
+/* Clock */
+.clock {
+    font-size: 12px;
+    padding: 2px 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+}
+
+/* Animations */
+@keyframes windowOpen {
+    from {
+        transform: translate(-50%, -50%) scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
+
+.modal.show {
+    animation: windowOpen 0.2s ease-out forwards;
+}
+
+/* Windows XP Button Styles */
+.xp-button {
+    background: linear-gradient(to bottom, #3C75E1 0%, #1C45B3 100%);
+    border: 1px solid #1C45B3;
+    border-radius: 3px;
+    padding: 4px 12px;
+    font-size: 11px;
+    text-align: center;
+    font-family: Tahoma, sans-serif;
+    color: #ffffff;
+    text-shadow: 1px 1px #000000;
+    margin: 4px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 100px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.xp-button:hover {
+    background: linear-gradient(to bottom, #4C85F1 0%, #2C55C3 100%);
+    border-color: #2C55C3;
+}
+
+.xp-button:active {
+    background: linear-gradient(to bottom, #1C45B3 0%, #3C75E1 100%);
+    box-shadow: inset 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+.xp-button img {
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
+}
+
+/* Resume Modal Specific Styles */
+.skill-section {
+    background: #ffffff;
+    border: 1px solid #d4d0c8;
+    padding: 16px;
+    margin-bottom: 16px;
+    border-radius: 3px;
+}
+
+.experience-item {
+    background: #ffffff;
+    border: 1px solid #d4d0c8;
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 3px;
+}
+
+.experience-title {
+    color: #003399;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.experience-date {
+    color: #666666;
+    font-size: 11px;
+    margin-bottom: 8px;
+}
+
+.experience-description {
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+/* Start Menu Styles */
+.start-menu {
+    min-width: 260px;
+    border: 1px solid #245EDC;
+    border-radius: 6px 6px 8px 8px;
+    box-shadow: 2px 4px 16px rgba(0,0,0,0.25);
+    animation: startMenuOpen 0.2s ease;
+}
+
+@keyframes startMenuOpen {
+    from {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.start-menu-header {
+    border-bottom: 1px solid #1C45B3;
+    background: linear-gradient(to right, #0054E3 0%, #2787E9 50%, #4B8AE5 100%);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.start-menu-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.start-menu-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background: none;
+    border: none;
+    color: #222;
+    font-size: 15px;
+    padding: 6px 10px;
+    border-radius: 4px;
+    margin-bottom: 2px;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.15s;
+}
+
+.start-menu-item:hover {
+    background: linear-gradient(to right, #316AC5 0%, #4B8AE5 100%);
+    color: #fff;
+    text-shadow: 1px 1px #000000;
+}
+
+.start-menu-item:active {
+    background: linear-gradient(to right, #1C45B3 0%, #316AC5 100%);
+}
+
+/* About Me Modal Specific Styles */
+#about-modal .modal-content {
+    min-width: 600px;
+    max-width: 800px;
+}
+
+#about-modal .profile-image-container {
+    border: 1px solid #d4d0c8;
+    background: linear-gradient(to bottom, #ffffff 0%, #f5f5f5 100%);
+}
+
+#about-modal .modal-body {
+    background: linear-gradient(to bottom, #ffffff 0%, #f5f5f5 100%);
+}
+
+#about-modal h4 {
+    color: #003399;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+#about-modal p {
+    color: #333333;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+#about-modal ul {
+    color: #333333;
+    font-size: 13px;
+}
+
+#about-modal .xp-button {
+    background: linear-gradient(to bottom, #3C75E1 0%, #1C45B3 100%);
+    border: 1px solid #1C45B3;
+    color: #ffffff;
+    text-shadow: 1px 1px #000000;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+#about-modal .xp-button:hover {
+    background: linear-gradient(to bottom, #4C85F1 0%, #2C55C3 100%);
+    border-color: #2C55C3;
+}
+
+#about-modal .xp-button:active {
+    background: linear-gradient(to bottom, #1C45B3 0%, #3C75E1 100%);
+    box-shadow: inset 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+/* Shutdown Modal Button Styles */
+#shutdown-modal .xp-button {
+    background: linear-gradient(to bottom, #3C75E1 0%, #1C45B3 100%);
+    border: 1px solid #1C45B3;
+    color: #ffffff;
+    text-shadow: 1px 1px #000000;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    min-width: 120px;
+    justify-content: center;
+}
+
+#shutdown-modal .xp-button:hover {
+    background: linear-gradient(to bottom, #4C85F1 0%, #2C55C3 100%);
+    border-color: #2C55C3;
+}
+
+#shutdown-modal .xp-button:active {
+    background: linear-gradient(to bottom, #1C45B3 0%, #3C75E1 100%);
+    box-shadow: inset 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+/* Project Cards */
+.project-card {
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.project-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    border-color: #316AC5;
+}
+
+.project-header {
+    border-bottom: 1px solid #1C45B3;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.project-content {
+    background: linear-gradient(to bottom, #ffffff 0%, #f5f5f5 100%);
+}
+
+.xp-tag {
+    display: inline-block;
+    background: linear-gradient(to bottom, #ECE9D8 0%, #D4D0C8 100%);
+    border: 1px solid #A6A6A6;
+    border-radius: 3px;
+    padding: 1px 6px;
+    font-size: 10px;
+    color: #333;
+    box-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+/* Make the projects modal wider */
+#projects-modal .modal-content {
+    min-width: 600px;
+    max-width: 800px;
+}
+
+/* Responsive adjustments for project cards */
+@media (max-width: 640px) {
+    #projects-modal .modal-content {
+        min-width: 90%;
+    }
+}
+
+/* Shutdown Animation */
+@keyframes shutdown {
+    0% {
+        filter: brightness(1);
+    }
+    50% {
+        filter: brightness(0.5);
+    }
+    100% {
+        filter: brightness(0);
+    }
+}
+
+.shutting-down {
+    animation: shutdown 3s ease-in forwards;
+}
+
+.shutting-down * {
+    pointer-events: none !important;
+}
+
+/* Modal Responsiveness */
+@media (max-width: 768px) {
+    .modal {
+        min-width: unset;
+        width: 95vw;
+        max-height: 85vh;
+        margin: 2.5vh auto;
+    }
+    
+    .modal-content {
+        max-height: 85vh;
+        overflow-y: auto;
+    }
+    
+    .modal-header {
+        padding: 8px;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+    
+    .modal-body {
+        padding: 12px;
+    }
+    
+    .xp-button {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+    
+    .project-card {
+        margin-bottom: 1rem;
+    }
+    
+    .taskbar {
+        height: 40px;
+    }
+    
+    .clock {
+        font-size: 12px;
+        padding: 0 8px;
+    }
+    
+    #start-button {
+        padding: 0 12px;
+    }
+    
+    #start-button img {
+        width: 20px;
+        height: 20px;
+    }
+    
+    /* About Modal Mobile Adjustments */
+    #about-modal .modal-content {
+        min-width: unset;
+        width: 95vw;
+    }
+    
+    #about-modal .profile-image-container {
+        padding: 8px;
+    }
+    
+    #about-modal .profile-image-container img {
+        width: 120px !important;
+        height: 120px !important;
+    }
+    
+    /* Projects Modal Mobile Adjustments */
+    #projects-modal .modal-content {
+        min-width: unset;
+        width: 95vw;
+    }
+    
+    .project-header {
+        padding: 8px;
+    }
+    
+    .project-content {
+        padding: 12px;
+    }
+    
+    /* Resume Modal Mobile Adjustments */
+    #resume-modal .modal-content {
+        min-width: unset;
+        width: 95vw;
+    }
+    
+    .skill-section {
+        padding: 12px;
+    }
+    
+    .experience-item {
+        padding: 12px;
+    }
+    
+    /* Contact Modal Mobile Adjustments */
+    #contact-modal .modal-content {
+        min-width: unset;
+        width: 95vw;
+    }
+    
+    #contact-form input,
+    #contact-form textarea {
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) {
+    .desktop-icon:hover {
+        background: none;
+        outline: none;
+    }
+    
+    .desktop-icon:active {
+        background: rgba(49, 106, 197, 0.4);
+        outline: 1px solid #316AC5;
+    }
+    
+    .xp-button:hover {
+        background: linear-gradient(to bottom, #316AC5 0%, #245EDC 100%);
+    }
+    
+    .context-menu-item:hover {
+        background: none;
+    }
+    
+    .context-menu-item:active {
+        background: rgba(49, 106, 197, 0.4);
+    }
+}
+
+/* Login Overlay Styles */
+#login-overlay {
+    background: linear-gradient(180deg, #003C91 0%, #3B77D1 35%, #3B77D1 100%);
+}
+
+#login-button, .guest-button {
+    transition: all 0.2s ease;
+}
+
+#login-button:hover, .guest-button:hover {
+    background-color: #4B87E1;
+    transform: scale(1.02);
+}
+
+#login-button:active, .guest-button:active {
+    transform: scale(0.98);
+}
+
+/* Main Content Fade In */
+.main-content {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.main-content.fade-in {
+    opacity: 1;
+} 

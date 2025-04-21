@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#245EDC">
+    <title>Windows XP Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="h-screen overflow-hidden select-none touch-manipulation" role="application" aria-label="Windows XP Portfolio Desktop">
+    <!-- Login Overlay -->
+    <div id="login-overlay" class="fixed inset-0 bg-gradient-to-b from-[#003C91] via-[#3B77D1] to-[#3B77D1] z-50">
+        <div class="max-w-5xl mx-auto h-full px-4 flex flex-col justify-center">
+            <!-- Centered Content Row -->
+            <div class="flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+                <!-- Windows Logo Section -->
+                <div class="mb-12 md:mb-0">
+                    <img src="assets/windows-logo.png" alt="Windows XP" class="w-28 mx-auto md:mx-0 md:w-40">
+                    <p class="text-white text-lg md:text-2xl mt-4 md:mt-8">To begin, click your user name</p>
+                </div>
+    
+                <!-- User Account -->
+                <div>
+                    <button id="login-button" class="flex flex-col md:flex-row items-center bg-[#3B77D1] hover:bg-[#4B87E1] p-4 rounded-lg transition-colors text-center">
+                        <div class="w-20 h-20 md:w-16 md:h-16 rounded-lg overflow-hidden border-2 border-white">
+                            <img src="assets/duck.jpg" alt="Duck Profile" class="w-full h-full object-cover">
+                        </div>
+                        <span class="text-white text-base md:text-2xl mt-2 md:mt-0 md:ml-4">Liz Atkins Portfolio</span>
+                    </button>
+                </div>
+            </div>
+    
+     
+        </div>
+    </div>
+
+    <!-- Audio Elements -->
+    <audio id="click-sound" src="assets/click.mp3" preload="auto"></audio>
+    <audio id="boot-sound" src="assets/boot.mp3" preload="auto"></audio>
+    
+    <!-- Desktop Icons -->
+    <div class="desktop-icons" role="toolbar" aria-label="Desktop Icons">
+        <!-- About Icon -->
+        <div class="desktop-icon" data-section="about" role="button" tabindex="0" aria-label="About Me">
+            <img src="assets/about.png" alt="About Me Icon" class="w-16 h-16 md:w-16 md:h-16">
+            <span class="icon-label">About</span>
+        </div>
+        <div class="desktop-icon" data-section="projects" role="button" tabindex="0" aria-label="Projects Folder">
+            <img src="assets/folder.png" alt="Projects Folder Icon" class="w-16 h-16 md:w-16 md:h-16">
+            <span class="icon-label">Projects</span>
+        </div>
+        <div class="desktop-icon" data-section="resume" role="button" tabindex="0" aria-label="Resume Document">
+            <img src="assets/document.png" alt="Resume Document Icon" class="w-16 h-16 md:w-16 md:h-16">
+            <span class="icon-label">Resume</span>
+        </div>
+        <div class="desktop-icon" data-section="contact" role="button" tabindex="0" aria-label="Contact Information">
+            <img src="assets/mail.png" alt="Contact Mail Icon" class="w-16 h-16 md:w-16 md:h-16">
+            <span class="icon-label">Contact</span>
+        </div>
+    </div>
+
+    <!-- Context Menu -->
+    <div id="context-menu" class="hidden fixed z-50" role="menu">
+        <button class="context-menu-item" role="menuitem" tabindex="0">
+            <img src="assets/folder.png" alt="" class="w-4 h-4 mr-2 inline" aria-hidden="true"> Open
+        </button>
+        <button class="context-menu-item" role="menuitem" tabindex="0">
+            <img src="assets/copy.png" alt="" class="w-4 h-4 mr-2 inline" aria-hidden="true"> Copy
+        </button>
+        <button class="context-menu-item" role="menuitem" tabindex="0">
+            <img src="assets/delete.png" alt="" class="w-4 h-4 mr-2 inline" aria-hidden="true"> Delete
+        </button>
+    </div>
+
+    <!-- Taskbar -->
+    <div class="taskbar fixed bottom-0 left-0 right-0 h-10 bg-[#245EDC] flex items-center px-2" role="toolbar" aria-label="Taskbar">
+        <button id="start-button" class="flex items-center h-8 px-2 rounded-md bg-[#3CA43C] hover:bg-[#4FB74F] italic text-white" aria-label="Start Menu" aria-expanded="false" aria-controls="start-menu">
+            <img src="assets/start-menu.png" alt="" class="w-6 h-6 mr-1" aria-hidden="true">
+            <span>start</span>
+        </button>
+        <div class="flex-grow"></div>
+        <div class="clock text-white pr-2" id="clock" role="status" aria-label="Current Time"></div>
+    </div>
+
+    <!-- Start Menu -->
+    <div id="start-menu" class="start-menu hidden fixed left-0 bottom-12 z-50" role="menu" aria-label="Start Menu">
+        <div class="start-menu-header flex items-center px-3 py-2 bg-[#245EDC] text-white font-bold rounded-t">
+            <img src="assets/duck.jpg" alt="" class="w-8 h-8 rounded-full mr-2 border border-white" aria-hidden="true">
+            <span>Liz Atkins</span>
+        </div>
+        <div class="start-menu-body bg-[#ECE9D8] p-2 rounded-b shadow-lg w-64">
+            <button class="start-menu-item" data-section="about" role="menuitem" tabindex="0">
+                <img src="assets/about.png" class="w-5 h-5 mr-2 inline" alt="" aria-hidden="true"> About
+            </button>
+            <button class="start-menu-item" data-section="projects" role="menuitem" tabindex="0">
+                <img src="assets/folder.png" class="w-5 h-5 mr-2 inline" alt="" aria-hidden="true"> Projects
+            </button>
+            <button class="start-menu-item" data-section="resume" role="menuitem" tabindex="0">
+                <img src="assets/document.png" class="w-5 h-5 mr-2 inline" alt="" aria-hidden="true"> Resume
+            </button>
+            <button class="start-menu-item" data-section="contact" role="menuitem" tabindex="0">
+                <img src="assets/mail.png" class="w-5 h-5 mr-2 inline" alt="" aria-hidden="true"> Contact
+            </button>
+            <hr class="my-2" role="separator">
+            <button class="start-menu-item" onclick="window.location.reload()" role="menuitem" tabindex="0">
+                <span class="mr-2" aria-hidden="true">🔒</span> Lock
+            </button>
+            <button class="start-menu-item" id="shutdown-btn" role="menuitem" tabindex="0">
+                <span class="mr-2" aria-hidden="true">⏻</span> Shut Down...
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal Windows -->
+    <div id="projects-modal" class="modal hidden" role="dialog" aria-labelledby="projects-modal-title" aria-modal="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="flex items-center">
+                    <img src="assets/folder.png" alt="" class="w-5 h-5 mr-2" aria-hidden="true">
+                    <span class="modal-title" id="projects-modal-title">My Projects</span>
+                </div>
+                <button class="close-btn" aria-label="Close Projects Window">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="bg-[#ECE9D8] p-4 rounded-lg shadow-inner">
+                    <h3 class="text-[#003399] font-bold mb-4">Featured Projects</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Project 1 -->
+                        <div class="project-card bg-white border border-[#0054E3] rounded-md overflow-hidden hover:shadow-md transition-shadow">
+                            <div class="project-header bg-gradient-to-r from-[#0054E3] to-[#4B8AE5] p-2 flex items-center">
+                                <img src="assets/folder.png" alt="" class="w-4 h-4 mr-2" aria-hidden="true">
+                                <span class="text-white font-medium">Windows XP Portfolio</span>
+                            </div>
+                            <div class="project-content p-3">
+                                <p class="text-sm mb-2">A nostalgic Windows XP-themed portfolio website that mimics the classic desktop experience from the early 2000s.</p>
+                                <div class="flex flex-wrap gap-1 mb-3">
+                                    <span class="xp-tag">HTML</span>
+                                    <span class="xp-tag">CSS</span>
+                                    <span class="xp-tag">JavaScript</span>
+                                    <span class="xp-tag">Tailwind</span>
+                                </div>
+                                <a href="#" class="xp-button text-xs py-1">
+                                    <img src="assets/folder.png" alt="" class="w-3 h-3 mr-1 inline"> View Project
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Project 2 -->
+                        <div class="project-card bg-white border border-[#0054E3] rounded-md overflow-hidden hover:shadow-md transition-shadow">
+                            <div class="project-header bg-gradient-to-r from-[#0054E3] to-[#4B8AE5] p-2 flex items-center">
+                                <img src="assets/folder.png" alt="" class="w-4 h-4 mr-2" aria-hidden="true">
+                                <span class="text-white font-medium">Conference Website</span>
+                            </div>
+                            <div class="project-content p-3">
+                                <p class="text-sm mb-2">Responsive conference website with interactive features, animations, and video integration that increased attendance by 34%.</p>
+                                <div class="flex flex-wrap gap-1 mb-3">
+                                    <span class="xp-tag">HTML</span>
+                                    <span class="xp-tag">Bootstrap</span>
+                                    <span class="xp-tag">JavaScript</span>
+                                    <span class="xp-tag">Responsive</span>
+                                </div>
+                                <a href="#" class="xp-button text-xs py-1">
+                                    <img src="assets/folder.png" alt="" class="w-3 h-3 mr-1 inline"> View Project
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Project 3 -->
+                        <div class="project-card bg-white border border-[#0054E3] rounded-md overflow-hidden hover:shadow-md transition-shadow">
+                            <div class="project-header bg-gradient-to-r from-[#0054E3] to-[#4B8AE5] p-2 flex items-center">
+                                <img src="assets/folder.png" alt="" class="w-4 h-4 mr-2" aria-hidden="true">
+                                <span class="text-white font-medium">Email Marketing Templates</span>
+                            </div>
+                            <div class="project-content p-3">
+                                <p class="text-sm mb-2">Modern, responsive HTML email templates that ensured design consistency and improved campaign engagement.</p>
+                                <div class="flex flex-wrap gap-1 mb-3">
+                                    <span class="xp-tag">HTML</span>
+                                    <span class="xp-tag">Email</span>
+                                    <span class="xp-tag">Responsive</span>
+                                </div>
+                                <a href="#" class="xp-button text-xs py-1">
+                                    <img src="assets/folder.png" alt="" class="w-3 h-3 mr-1 inline"> View Project
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Project 4 -->
+                        <div class="project-card bg-white border border-[#0054E3] rounded-md overflow-hidden hover:shadow-md transition-shadow">
+                            <div class="project-header bg-gradient-to-r from-[#0054E3] to-[#4B8AE5] p-2 flex items-center">
+                                <img src="assets/folder.png" alt="" class="w-4 h-4 mr-2" aria-hidden="true">
+                                <span class="text-white font-medium">CSS Illustrations</span>
+                            </div>
+                            <div class="project-content p-3">
+                                <p class="text-sm mb-2">Artistic CSS illustrations that showcase creative use of CSS to create visually appealing designs without images.</p>
+                                <div class="flex flex-wrap gap-1 mb-3">
+                                    <span class="xp-tag">CSS</span>
+                                    <span class="xp-tag">Art</span>
+                                    <span class="xp-tag">Design</span>
+                                </div>
+                                <a href="#" class="xp-button text-xs py-1">
+                                    <img src="assets/folder.png" alt="" class="w-3 h-3 mr-1 inline"> View Project
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Resume Modal -->
+    <div id="resume-modal" class="modal hidden" role="dialog" aria-labelledby="resume-modal-title" aria-modal="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="flex items-center">
+                    <img src="assets/document.png" alt="" class="w-5 h-5 mr-2" aria-hidden="true">
+                    <span class="modal-title" id="resume-modal-title">Resume - Liz Atkins</span>
+                </div>
+                <button class="close-btn" aria-label="Close Resume Window">×</button>
+            </div>
+            <div class="modal-body">
+                <!-- Contact Information -->
+                <div class="contact-info mb-4">
+                    <h2 class="text-xl font-bold mb-2">Liz Atkins</h2>
+                
+                </div>
+
+                <!-- Summary Section -->
+                <div class="summary-section mb-4" role="region" aria-labelledby="summary-heading">
+                    <h3 id="summary-heading" class="text-[#003399] font-bold mb-2">SUMMARY</h3>
+                    <p>Front-end focused web developer skilled in writing custom HTML, CSS, and JavaScript to build responsive and accessible websites. I've worked on conference event websites, back-end applications, and CSS illustrations, bringing both functionality and artistry to the web. Passionate about working on projects that have a meaningful impact and improve the lives of others.</p>
+                </div>
+
+                <!-- Skills Section -->
+                <div class="skill-section mb-4" role="region" aria-labelledby="skills-heading">
+                    <h3 id="skills-heading" class="text-[#003399] font-bold mb-2">SKILLS</h3>
+                    <div class="flex flex-wrap gap-2" role="group" aria-label="Technical Skills">
+                        <button class="xp-button" role="button">HTML</button>
+                        <button class="xp-button" role="button">CSS</button>
+                        <button class="xp-button" role="button">Bootstrap</button>
+                        <button class="xp-button" role="button">Tailwind</button>
+                        <button class="xp-button" role="button">Responsive Design</button>
+                        <button class="xp-button" role="button">React</button>
+                        <button class="xp-button" role="button">JavaScript</button>
+                        <button class="xp-button" role="button">SEO</button>
+                        <button class="xp-button" role="button">WordPress</button>
+                        <button class="xp-button" role="button">PHP</button>
+                        <button class="xp-button" role="button">Adobe Creative Cloud</button>
+                        <button class="xp-button" role="button">Social Media Marketing</button>
+                        <button class="xp-button" role="button">Visual Studio Code</button>
+                        <button class="xp-button" role="button">Google Analytics</button>
+                        <button class="xp-button" role="button">SQL</button>
+                        <button class="xp-button" role="button">Git/GitHub</button>
+                        <button class="xp-button" role="button">SharePoint</button>
+                        <button class="xp-button" role="button">Microsoft Access</button>
+                    </div>
+                </div>
+
+                <!-- Work Experience Section -->
+                <div class="experience-section mb-4" role="region" aria-labelledby="experience-heading">
+                    <h3 id="experience-heading" class="text-[#003399] font-bold mb-2">WORK EXPERIENCE</h3>
+                    
+                    <div class="experience-item mb-3" role="article">
+                        <div class="experience-title font-bold">Web Developer | ARCTOS Technology</div>
+                        <div class="experience-date text-gray-600">Sep 2023 - Present</div>
+                        <ul class="list-disc list-inside mt-2">
+                            <li>Developed responsive websites using HTML, Bootstrap 5 CSS, and JavaScript, improving user experience through optimized layouts, interactive features, animations, and video integration, contributing to a 34% increase in attendance at our largest client conference, from 1,509 to 2,025 participants.</li>
+                            <li>Enhanced email marketing efforts by incorporating modern, responsive HTML templates, leading to visually appealing and mobile-friendly emails that ensured design consistency and improved campaign engagement.</li>
+                            <li>Spearheaded the creation and management of LinkedIn and Twitter accounts, establishing a strong social media presence from the ground up, and successfully implemented targeted ads, driving increased event attendance and engagement.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="experience-item mb-3" role="article">
+                        <div class="experience-title font-bold">Web Intern | The Clarion, Sinclair Community College</div>
+                        <div class="experience-date text-gray-600">Feb 2023 - Aug 2023</div>
+                        <ul class="list-disc list-inside mt-2">
+                            <li>Designed and maintained the school magazine's website, adding new features while ensuring alignment with the magazine's brand and style through collaboration with editorial and design teams.</li>
+                            <li>Recognized by the advisor for going above and beyond the role, contributing to graphic design, writing articles, editing content, and managing social media, demonstrating a strong commitment to team success.</li>
+                            <li>Monitored website performance and effectively diagnosed WordPress issues to optimize user experience.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Education Section -->
+                <div class="education-section" role="region" aria-labelledby="education-heading">
+                    <h3 id="education-heading" class="text-[#003399] font-bold mb-2">EDUCATION</h3>
+                    <div class="education-item" role="article">
+                        <div class="education-title font-bold">Associate of Computer Information Systems/Web Development</div>
+                        <div class="education-institution">Sinclair Community College</div>
+                        <div class="education-date text-gray-600">2022 - 2024</div>
+                        <div class="education-description mt-2">
+                            <p>Focused on software development, web development, and programming languages, while gaining a solid understanding of system analysis & design, database management, and network fundamentals.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <audio id="shutdown-sound" src="assets/shutdown.mp3" aria-hidden="true"></audio>
+    <div id="shutdown-modal" class="modal hidden" role="dialog" aria-labelledby="shutdown-modal-title" aria-modal="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="flex items-center">
+                    <img src="assets/shutdown.png" alt="" class="w-5 h-5 mr-2" aria-hidden="true">
+                    <span class="modal-title" id="shutdown-modal-title">Shut Down Windows</span>
+                </div>
+                <button class="close-btn" aria-label="Close Shutdown Window">×</button>
+            </div>
+            <div class="modal-body text-center">
+                <p class="mb-4">Are you sure you want to shut down your computer?</p>
+                <div class="flex justify-center gap-2">
+                    <button class="xp-button" id="shutdown-confirm">
+                        <img src="assets/shutdown.png" alt="" class="w-4 h-4 mr-1"> Yes
+                    </button>
+                    <button class="xp-button" id="shutdown-cancel">
+                        <img src="assets/cancel.png" alt="" class="w-4 h-4 mr-1"> No
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Modal -->
+    <div id="about-modal" class="modal hidden" role="dialog" aria-labelledby="about-modal-title" aria-modal="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="flex items-center">
+                    <img src="assets/about.png" alt="" class="w-5 h-5 mr-2" aria-hidden="true">
+                    <span class="modal-title" id="about-modal-title">About Me</span>
+                </div>
+                <button class="close-btn" aria-label="Close About Window">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="flex flex-col md:flex-row gap-4 md:gap-6">
+                    <!-- Profile Image Section -->
+                    <div class="w-full md:w-1/3 flex flex-col items-center">
+                        <div class="profile-image-container p-2 bg-[#ECE9D8] rounded-lg shadow-inner">
+                            <img src="assets/user_icon2.png" alt="Profile Photo" class="w-32 h-32 md:w-48 md:h-48 object-cover rounded" id="profile-image">
+                        </div>
+                        <div class="mt-4 text-center">
+                            <h3 class="text-[#003399] font-bold text-lg">Liz Atkins</h3>
+                            <p class="text-gray-600">Front-End Web Developer</p>
+                        </div>
+                    </div>
+                    
+                    <!-- About Content Section -->
+                    <div class="w-full md:w-2/3">
+                        <div class="bg-[#ECE9D8] p-3 md:p-4 rounded-lg shadow-inner">
+                            <h4 class="text-[#003399] font-bold mb-2">Quick Summary</h4>
+                            <p class="mb-4 text-sm md:text-base">
+                                Front-end focused web developer skilled in writing custom HTML, CSS, and JavaScript to build responsive and accessible websites. I've worked on conference event websites, back-end applications, and CSS illustrations, bringing both functionality and artistry to the web.
+                            </p>
+                            
+                            <h4 class="text-[#003399] font-bold mb-2">Key Highlights</h4>
+                            <ul class="list-disc list-inside space-y-1 text-sm md:text-base">
+                                <li>Developed responsive websites that increased conference attendance</li>
+                                <li>Enhanced email marketing with modern, responsive HTML templates</li>
+                                <li>Established and managed social media presence with targeted ads</li>
+                                <li>Passionate about projects that improve the lives of others</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Quick Links -->
+                        <div class="mt-4 flex flex-wrap gap-2 justify-center md:justify-start">
+                            <a href="https://github.com/LizAtkins" target="_blank" class="xp-button text-sm">GitHub</a>
+                            <a href="https://linkedin.com/in/liz-atkins" target="_blank" class="xp-button text-sm">LinkedIn</a>
+                            <button class="xp-button text-sm" onclick="document.getElementById('contact-modal').classList.remove('hidden')">
+                                <img src="assets/mail.png" alt="Contact" class="w-4 h-4 mr-1 inline"> Contact Me
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div id="contact-modal" class="modal hidden" role="dialog" aria-labelledby="contact-modal-title" aria-modal="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="flex items-center">
+                    <img src="assets/mail.png" alt="" class="w-5 h-5 mr-2" aria-hidden="true">
+                    <span class="modal-title" id="contact-modal-title">Contact Information</span>
+                </div>
+                <button class="close-btn" aria-label="Close Contact Window">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="bg-[#ECE9D8] p-3 md:p-4 rounded-lg shadow-inner">
+                    <h3 class="text-[#003399] font-bold mb-4">Get in Touch</h3>
+                    
+                    <form id="contact-form" action="https://formspree.io/f/manezjaj" method="POST" class="mb-6">
+                        <div class="mb-4">
+                            <label for="name" class="block text-sm font-medium mb-1">Name</label>
+                            <input type="text" id="name" name="name" required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-base"
+                                placeholder="Your name">
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="message" class="block text-sm font-medium mb-1">Message</label>
+                            <textarea id="message" name="message" required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-base"
+                                rows="4" placeholder="Your message"></textarea>
+                        </div>
+                        
+                        <input type="hidden" name="_replyto" value="liz_atkins@outlook.com">
+                        
+                        <button type="submit" class="xp-button w-full md:w-auto">
+                            <img src="assets/mail.png" alt="" class="w-4 h-4 mr-1 inline"> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

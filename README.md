@@ -54,4 +54,10 @@ MIT License — free to use and customize!
 
 ---
 
+## Live Demo
+
+👉 **Check out the live demo**: [View the Portfolio](https://lizatkins.github.io/frutiger-aero-portfolio/)
+
+---
+
 *Made for fans of retro tech and pixel-perfect nostalgia.*
